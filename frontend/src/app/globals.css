@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&family=Syne:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-syne: 'Syne', system-ui, sans-serif;
+  --font-fraunces: 'Fraunces', Georgia, serif;
+  --font-dm-mono: 'DM Mono', monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #faf7f2;
+  color: #0f0e0c;
+  font-family: var(--font-syne);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: #ece5d8; }
+::-webkit-scrollbar-thumb { background: #b8b5ae; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #6b6860; }
+
+/* Smooth transitions */
+a, button { transition: all 0.15s ease; }
+
+/* Selection color */
+::selection { background: #fef3da; color: #0f0e0c; }
+
+@layer components {
+  .btn-primary {
+    @apply bg-ink text-cream px-5 py-2.5 rounded-full text-sm font-medium hover:bg-ink-soft transition-all duration-200 inline-flex items-center gap-2;
+  }
+
+  .btn-secondary {
+    @apply bg-cream-deep text-ink px-5 py-2.5 rounded-full text-sm font-medium hover:bg-cream-warm border border-ink/10 transition-all duration-200 inline-flex items-center gap-2;
+  }
+
+  .btn-ghost {
+    @apply text-ink-muted px-4 py-2 rounded-full text-sm font-medium hover:bg-cream-deep hover:text-ink transition-all duration-200 inline-flex items-center gap-2;
+  }
+
+  .card {
+    @apply bg-white rounded-2xl border border-gray-200 shadow-lg hover:shadow-xl transition-all duration-200;
+  }
+
+  .badge {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+  }
+
+  .input {
+    @apply w-full bg-white border border-ink/15 rounded-xl px-4 py-2.5 text-sm text-ink placeholder:text-ink-faint focus:outline-none focus:ring-2 focus:ring-amber/30 focus:border-amber transition-all;
+  }
+
+  .select {
+    @apply w-full bg-white border border-ink/15 rounded-xl px-4 py-2.5 text-sm text-ink focus:outline-none focus:ring-2 focus:ring-amber/30 focus:border-amber transition-all appearance-none;
+  }
+
+  .section-title {
+    @apply font-display text-3xl md:text-4xl font-semibold text-ink tracking-tight;
+  }
+}

@@ -1,0 +1,65 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model College {
+  id          String   @id @default(cuid())
+  name        String
+  location    String
+  city        String
+  state       String
+  country     String   @default("India")
+  rating      Float    @default(0)
+  totalFees   Int
+  type        String   // "Government" | "Private" | "Deemed"
+  established Int?
+  imageUrl    String?
+  description String?
+  website     String?
+  naacGrade   String?
+  nirfRank    Int?
+  totalSeats  Int?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  courses     Course[]
+  placements  Placement[]
+  reviews     Review[]
+}
+
+model Course {
+  id         String  @id @default(cuid())
+  name       String
+  duration   Int     // in years
+  fees       Int
+  seats      Int?
+  degree     String  // "B.Tech" | "MBA" | "M.Tech" etc.
+  collegeId  String
+  college    College @relation(fields: [collegeId], references: [id])
+}
+
+model Placement {
+  id              String  @id @default(cuid())
+  year            Int
+  avgPackage      Int     // in LPA (lakhs per annum)
+  highestPackage  Int
+  placementRate   Float   // percentage
+  collegeId       String
+  college         College @relation(fields: [collegeId], references: [id])
+}
+
+model Review {
+  id         String   @id @default(cuid())
+  author     String
+  rating     Float
+  comment    String
+  year       Int
+  collegeId  String
+  college    College  @relation(fields: [collegeId], references: [id])
+  createdAt  DateTime @default(now())
+}
