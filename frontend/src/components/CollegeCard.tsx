@@ -73,7 +73,7 @@ export default function CollegeCard({ college }: CollegeCardProps) {
           </div>
           <div className="text-center border-x border-ink/8">
             <div className="text-sm font-semibold text-ink font-mono">{formatFees(college.totalFees)}</div>
-            <span className="text-xs text-ink-faint">Total Fees</span>
+            <span className="text-xs text-ink-faint">Total Fee</span>
           </div>
           <div className="text-center">
             {latestPlacement ? (
